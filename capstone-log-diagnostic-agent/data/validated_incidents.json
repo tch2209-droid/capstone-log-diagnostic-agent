@@ -1,0 +1,38 @@
+[
+  {
+    "incident_id": "INC-1001",
+    "application": "order-service",
+    "component": "database-access",
+    "error_family": "HikariCP connection timeout",
+    "symptoms": "HikariPool active connections reached max, idle dropped to zero, requests waited for connections, slow order_history customer_reference query",
+    "validated_diagnosis": "A slow order_history query exhausted the application connection pool while the database remained available.",
+    "evidence_summary": "Pool saturation correlated with a 48-second query; database health was UP; query plan showed a sequential scan.",
+    "resolution": "Added an index supporting customer_reference and tuned the query; pool waiters returned to zero.",
+    "validation_status": "validated",
+    "metadata": {"validated_by": "synthetic_review_loop"}
+  },
+  {
+    "incident_id": "INC-1002",
+    "application": "order-service",
+    "component": "database-access",
+    "error_family": "database unavailable",
+    "symptoms": "SQL connection failures and Hikari acquisition timeouts across all endpoints",
+    "validated_diagnosis": "The PostgreSQL instance was temporarily unavailable during infrastructure maintenance.",
+    "evidence_summary": "Database health checks failed and infrastructure events showed a restart during the incident.",
+    "resolution": "Database service recovered and connection acquisition normalized.",
+    "validation_status": "validated",
+    "metadata": {"validated_by": "synthetic_review_loop"}
+  },
+  {
+    "incident_id": "INC-2001",
+    "application": "payment-service",
+    "component": "executor",
+    "error_family": "thread pool exhaustion",
+    "symptoms": "HTTP timeouts, executor queue full, no database connection errors",
+    "validated_diagnosis": "A blocked external API caused request threads to accumulate until the executor queue filled.",
+    "evidence_summary": "Thread dumps and outbound latency metrics confirmed blocked calls.",
+    "resolution": "Added dependency timeout and circuit breaker.",
+    "validation_status": "validated",
+    "metadata": {"validated_by": "synthetic_review_loop"}
+  }
+]

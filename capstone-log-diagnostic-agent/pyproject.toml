@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "capstone-log-diagnostic-agent"
+version = "0.1.0"
+description = "Safety-bounded LangGraph application-log diagnostic agent with human-reviewed memory"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+authors = [{name = "Titu Sutradhar"}]
+dependencies = [
+  "pydantic>=2.8"
+]
+
+[project.optional-dependencies]
+agent = [
+  "langgraph>=0.6",
+  "langchain-core>=0.3",
+  "langchain-openai>=1.1.11",
+  "langgraph-checkpoint-postgres>=2.0",
+  "python-dotenv>=1.1"
+]
+postgres = [
+  "psycopg[binary,pool]>=3.2",
+  "pgvector>=0.4",
+  "sqlalchemy>=2.0"
+]
+semantic = [
+  "sentence-transformers>=3.0"
+]
+mcp = [
+  "mcp>=1.28,<2",
+  "langchain-mcp-adapters>=0.3,<0.4",
+  "fastmcp>=2.13,<4",
+  "cryptography>=45",
+  "keyring>=25.6",
+  "platformdirs>=4",
+  "py-key-value-aio[filetree]>=0.4.4,<0.5"
+]
+dev = [
+  "pytest>=8.0"
+]
+all = [
+  "langgraph>=0.6",
+  "langchain-core>=0.3",
+  "langchain-openai>=1.1.11",
+  "langgraph-checkpoint-postgres>=2.0",
+  "python-dotenv>=1.1",
+  "psycopg[binary,pool]>=3.2",
+  "pgvector>=0.4",
+  "sqlalchemy>=2.0",
+  "sentence-transformers>=3.0",
+  "mcp>=1.28,<2",
+  "langchain-mcp-adapters>=0.3,<0.4",
+  "fastmcp>=2.13,<4",
+  "cryptography>=45",
+  "keyring>=25.6",
+  "platformdirs>=4",
+  "py-key-value-aio[filetree]>=0.4.4,<0.5",
+  "pytest>=8.0"
+]
+
+[project.scripts]
+log-diagnose-demo = "log_diagnostic_agent.demo:main"
+log-diagnose-agent = "log_diagnostic_agent.langgraph_app:main"
+log-diagnose-seed-rag = "log_diagnostic_agent.seed_rag:main"
+log-diagnose-review-server = "log_diagnostic_agent.review_server:main"
+log-diagnose-atlassian-auth = "log_diagnostic_agent.atlassian_auth:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,14 @@
+[
+  {
+    "application": "order-service",
+    "version": "2.18.4",
+    "deployed_at": "2026-08-03T19:15:00Z",
+    "change_summary": "Add response field for order history endpoint"
+  },
+  {
+    "application": "order-service",
+    "version": "2.18.3",
+    "deployed_at": "2026-07-21T17:05:00Z",
+    "change_summary": "Dependency refresh"
+  }
+]

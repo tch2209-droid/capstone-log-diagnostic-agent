@@ -1,0 +1,17 @@
+[
+  {
+    "page_id": "RUNBOOK-DB-12",
+    "title": "Database Connection Pool Timeout Runbook",
+    "content": "For HikariCP acquisition timeouts, check active/idle/waiting pool counts, database availability, long-running queries, and possible connection leaks. Do not assume the database is down solely from SQLTransientConnectionException. If the database health check is healthy while active connections equal max and waiters rise, inspect long-running queries before increasing the pool size."
+  },
+  {
+    "page_id": "ARCH-ORDER-03",
+    "title": "Order Service Architecture",
+    "content": "Order Service uses PostgreSQL through a HikariCP pool named OrderDbPool. OrderHistoryRepository reads the order_history table. Application logs include correlation IDs and database timing information."
+  },
+  {
+    "page_id": "RUNBOOK-APP-08",
+    "title": "HTTP 500 Investigation",
+    "content": "Treat HTTP 500 as a symptom. Trace the correlation ID backward to the earliest causal error and inspect dependencies before assigning root cause."
+  }
+]

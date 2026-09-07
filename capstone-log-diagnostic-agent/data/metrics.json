@@ -1,0 +1,25 @@
+{
+  "connection_pool": {
+    "name": "OrderDbPool",
+    "max": 50,
+    "active": 50,
+    "idle": 0,
+    "waiting": 27,
+    "acquire_timeout_ms": 30000
+  },
+  "database_availability": {
+    "status": "UP",
+    "health_check_latency_ms": 21,
+    "cpu_percent": 38,
+    "connections_rejected": 0
+  },
+  "query_latency": {
+    "order_history_customer_reference_ms": 52340,
+    "normal_p95_ms": 420
+  },
+  "application": {
+    "cpu_percent": 44,
+    "heap_percent": 61,
+    "http_5xx_per_minute": 39
+  }
+}

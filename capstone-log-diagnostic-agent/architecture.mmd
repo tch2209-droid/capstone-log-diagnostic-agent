@@ -1,0 +1,21 @@
+flowchart TD
+    A[Local logs under C:\AI_Repo\logs] --> T[Triage]
+    T --> S[Diagnostic supervisor / ReAct]
+    S --> O[Read-only logs, metrics, source, changes]
+    S --> C[Confluence MCP reference]
+    S --> R[RAG: reviewed incidents only]
+    O --> E[Evidence catalog with IDs]
+    C --> E
+    R --> E
+    E --> S
+    S --> H[Up to 3 hypotheses]
+    H --> B[Bounded branch investigators]
+    B --> K[Critic / evaluator]
+    K --> G{Automated evidence gate}
+    G -- need evidence and budget remains --> S
+    G -- ready or escalate --> U[Human interrupt]
+    U -- reject --> X[Final; no admission]
+    U -- confirm/correct + remediation --> M[(CockroachDB trusted vector memory)]
+    M --> R
+    P[(CockroachDB LangGraph checkpoints)] --- T
+    P --- S

@@ -1,0 +1,1 @@
+CREATE INDEX `orchestration_runs_updated_idx` ON `orchestration_runs` (`updated_at`);

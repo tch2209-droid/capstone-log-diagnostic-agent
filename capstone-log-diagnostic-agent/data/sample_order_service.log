@@ -1,0 +1,12 @@
+2026-08-08T14:20:00.101Z INFO  [http-nio-8080-exec-31] c.e.order.OrderController correlationId=6f2a1 request=GET /orders/history?customerReference=CUST-9912
+2026-08-08T14:20:00.122Z INFO  [http-nio-8080-exec-31] c.e.order.OrderHistoryService correlationId=6f2a1 loading order history
+2026-08-08T14:20:01.003Z INFO  [http-nio-8080-exec-20] c.e.order.HealthService dbHealth=UP latencyMs=18
+2026-08-08T14:20:14.201Z WARN  [housekeeper] com.zaxxer.hikari.pool.HikariPool pool=OrderDbPool active=46 idle=4 waiting=5 max=50
+2026-08-08T14:20:25.880Z WARN  [housekeeper] com.zaxxer.hikari.pool.HikariPool pool=OrderDbPool active=50 idle=0 waiting=18 max=50
+2026-08-08T14:20:31.442Z WARN  [http-nio-8080-exec-31] c.e.order.OrderHistoryRepository correlationId=6f2a1 slow query executionMs=52340 sql="select id, order_date, total from order_history where customer_reference = ? order by order_date desc"
+2026-08-08T14:20:31.447Z WARN  [housekeeper] com.zaxxer.hikari.pool.HikariPool pool=OrderDbPool active=50 idle=0 waiting=27 max=50
+2026-08-08T14:20:31.450Z ERROR [http-nio-8080-exec-44] c.e.order.OrderHistoryService correlationId=ca871 java.sql.SQLTransientConnectionException: OrderDbPool - Connection is not available, request timed out after 30000ms.
+2026-08-08T14:20:31.451Z ERROR [http-nio-8080-exec-44] c.e.order.OrderController correlationId=ca871 HTTP 500 GET /orders/history
+2026-08-08T14:20:31.452Z ERROR [http-nio-8080-exec-52] c.e.order.OrderHistoryService correlationId=8c11d java.sql.SQLTransientConnectionException: OrderDbPool - Connection is not available, request timed out after 30000ms.
+2026-08-08T14:20:31.453Z ERROR [http-nio-8080-exec-52] c.e.order.OrderController correlationId=8c11d HTTP 500 GET /orders/history
+2026-08-08T14:20:32.120Z INFO  [http-nio-8080-exec-20] c.e.order.HealthService dbHealth=UP latencyMs=21
